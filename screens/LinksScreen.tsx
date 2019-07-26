@@ -1,27 +1,56 @@
-import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
+import React from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
+import { Button, Divider, Text } from "react-native-paper";
+import * as WebBrowser from "expo-web-browser";
 
-export default function LinksScreen() {
+export default function LinksScreen(props) {
   return (
     <ScrollView style={styles.container}>
-      {/**
-       * Go ahead and delete ExpoLinksView and replace it with your content;
-       * we just wanted to provide you with some helpful links.
-       */}
-      <ExpoLinksView />
+      <View>
+        <Text>Expo Resources</Text>
+        <Button
+          mode="contained"
+          onPress={() => WebBrowser.openBrowserAsync("http://docs.expo.io")}
+        >
+          Open Expo Docs
+        </Button>
+
+        <Divider />
+
+        <Button
+          mode="contained"
+          onPress={() => WebBrowser.openBrowserAsync("http://forums.expo.io")}
+        >
+          Open Expo Forums
+        </Button>
+
+        <Divider />
+
+        <Button
+          mode="contained"
+          onPress={() => WebBrowser.openBrowserAsync("https://slack.expo.io")}
+        >
+          Open Expo Slack
+        </Button>
+
+        <Divider />
+
+        <Text>React Navigation Modal transition mode</Text>
+        <Button
+          mode="contained"
+          onPress={() => props.navigation.navigate("Details")}
+        >
+          Go to Details page Modal mode
+        </Button>
+      </View>
     </ScrollView>
   );
 }
 
-LinksScreen.navigationOptions = {
-  title: 'Links',
-};
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
-  },
+    padding: 15,
+    backgroundColor: "#fff"
+  }
 });

@@ -4,22 +4,50 @@ import {
   createStackNavigator,
   createBottomTabNavigator
 } from "react-navigation";
+import { Appbar } from "react-native-paper";
 
 import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import LinksScreen from "../screens/LinksScreen";
 import SettingsScreen from "../screens/SettingsScreen";
-
-// const config = Platform.select({
-//   web: { headerMode: "screen" },
-//   default: {}
-// });
+import DetailsScreen from "../screens/DetailsScreen";
 
 const HomeStack = createStackNavigator(
   {
-    Home: HomeScreen
-  }
-  // config
+    Home: {
+      screen: HomeScreen,
+      navigationOptions: ({ navigation }) => ({
+        header: null
+      })
+    },
+    Details: {
+      screen: DetailsScreen,
+      navigationOptions: ({ navigation }) => ({
+        header: props => {
+          return (
+            <Appbar.Header>
+              <Appbar.BackAction
+                onPress={() => props.navigation.goBack(null)}
+              />
+              <Appbar.Content
+                title="React Navigation"
+                subtitle="Card transition mode example"
+              />
+              <Appbar.Action
+                icon="search"
+                onPress={() => console.log("Search")}
+              />
+              <Appbar.Action
+                icon="more-vert"
+                onPress={() => console.log("Show more")}
+              />
+            </Appbar.Header>
+          );
+        }
+      })
+    }
+  },
+  { initialRouteName: "Home", headerMode: "screen" }
 );
 
 HomeStack.navigationOptions = {
@@ -36,13 +64,36 @@ HomeStack.navigationOptions = {
   )
 };
 
-// HomeStack.path = "";
-
 const LinksStack = createStackNavigator(
   {
-    Links: LinksScreen
-  }
-  // config
+    Links: {
+      screen: LinksScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: "Links"
+      })
+    },
+    Details: {
+      screen: DetailsScreen,
+      navigationOptions: ({ navigation }) => ({
+        header: props => {
+          console.log(navigation.state);
+          return (
+            <Appbar.Header>
+              <Appbar.Action
+                icon="clear"
+                onPress={() => props.navigation.goBack(null)}
+              />
+              <Appbar.Content
+                title="React Navigation"
+                subtitle="Modal transition mode example"
+              />
+            </Appbar.Header>
+          );
+        }
+      })
+    }
+  },
+  { initialRouteName: "Links", mode: "modal", headerMode: "screen" }
 );
 
 LinksStack.navigationOptions = {
@@ -55,14 +106,14 @@ LinksStack.navigationOptions = {
   )
 };
 
-// LinksStack.path = "";
-
-const SettingsStack = createStackNavigator(
-  {
-    Settings: SettingsScreen
+const SettingsStack = createStackNavigator({
+  Settings: {
+    screen: SettingsScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: "app.json"
+    })
   }
-  // config
-);
+});
 
 SettingsStack.navigationOptions = {
   tabBarLabel: "Settings",
@@ -74,14 +125,10 @@ SettingsStack.navigationOptions = {
   )
 };
 
-// SettingsStack.path = "";
-
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack
 });
-
-// tabNavigator.path = "";
 
 export default tabNavigator;
