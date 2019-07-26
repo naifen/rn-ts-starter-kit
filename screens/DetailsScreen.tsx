@@ -4,7 +4,7 @@ import * as WebBrowser from "expo-web-browser";
 import { Button, Text } from "react-native-paper";
 
 export default function DetailsScreen(props) {
-  const homeParam = props.navigation.getParam("homeParam", "Default param");
+  const someParam = props.navigation.getParam("someParam", "Default param");
 
   return (
     <View>
@@ -19,6 +19,7 @@ export default function DetailsScreen(props) {
         >
           <Text>This is Settings screen</Text>
           <Button
+            mode="outlined"
             onPress={() =>
               WebBrowser.openBrowserAsync(
                 "https://reactnavigation.org/docs/en/stack-navigator.html"
@@ -29,7 +30,7 @@ export default function DetailsScreen(props) {
           </Button>
 
           <Text>Params:</Text>
-          {homeParam && <Text>{homeParam}</Text>}
+          {someParam && <Text>{someParam}</Text>}
         </View>
       </ScrollView>
     </View>

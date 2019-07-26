@@ -38,7 +38,12 @@ export default function LinksScreen(props) {
         <Text>React Navigation Modal transition mode</Text>
         <Button
           mode="contained"
-          onPress={() => props.navigation.navigate("Details")}
+          onPress={() =>
+            props.navigation.navigate("Details", {
+              someParam: "This is the param passed from LINKs page.",
+              navType: "Modal"
+            })
+          }
         >
           Go to Details page Modal mode
         </Button>

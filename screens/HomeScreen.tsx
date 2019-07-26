@@ -90,7 +90,8 @@ export default function HomeScreen(props) {
               mode="contained"
               onPress={() => {
                 props.navigation.navigate("Details", {
-                  homeParam: "This is the param passed from home page."
+                  someParam: "This is the param passed from HOME page.",
+                  navType: "Card"
                 });
               }}
             >

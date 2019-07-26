@@ -31,7 +31,8 @@ const HomeStack = createStackNavigator(
               />
               <Appbar.Content
                 title="React Navigation"
-                subtitle="Card transition mode example"
+                subtitle={`${navigation.state.params.navType ||
+                  "Default"} transition mode example`}
               />
               <Appbar.Action
                 icon="search"
@@ -76,16 +77,16 @@ const LinksStack = createStackNavigator(
       screen: DetailsScreen,
       navigationOptions: ({ navigation }) => ({
         header: props => {
-          console.log(navigation.state);
           return (
             <Appbar.Header>
+              <Appbar.Content
+                title="React Navigation"
+                subtitle={`${navigation.state.params.navType ||
+                  "Default"} transition mode example`}
+              />
               <Appbar.Action
                 icon="clear"
                 onPress={() => props.navigation.goBack(null)}
-              />
-              <Appbar.Content
-                title="React Navigation"
-                subtitle="Modal transition mode example"
               />
             </Appbar.Header>
           );
