@@ -1,9 +1,7 @@
 import React from "react";
 import { Platform } from "react-native";
-import {
-  createStackNavigator,
-  createBottomTabNavigator
-} from "react-navigation";
+import { createStackNavigator } from "react-navigation";
+import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import { Appbar } from "react-native-paper";
 
 import TabBarIcon from "../components/TabBarIcon";
@@ -126,10 +124,18 @@ SettingsStack.navigationOptions = {
   )
 };
 
-const tabNavigator = createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
-  SettingsStack
-});
+// Integrate React-Navigation with React-Native-Paper:
+// https://github.com/react-navigation/material-bottom-tabs
+const tabNavigator = createMaterialBottomTabNavigator(
+  {
+    HomeStack,
+    LinksStack,
+    SettingsStack
+  },
+  {
+    initialRouteName: "HomeStack",
+    activeColor: "#eee"
+  }
+);
 
 export default tabNavigator;

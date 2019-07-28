@@ -44,7 +44,7 @@ export default function HomeScreen(props) {
           <View
             style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
           >
-            <MonoText>screens/HomeScreen.js</MonoText>
+            <MonoText>screens/HomeScreen.tsx</MonoText>
           </View>
 
           <View style={styles.helpContainer}>
@@ -110,7 +110,7 @@ export default function HomeScreen(props) {
           style={[styles.codeHighlightContainer, styles.navigationFilename]}
         >
           <MonoText style={styles.codeHighlightText}>
-            navigation/MainTabNavigator.js
+            navigation/MainTabNavigator.tsx
           </MonoText>
         </View>
       </View>
