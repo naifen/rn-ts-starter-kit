@@ -6,10 +6,10 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
-  View
+  View,
+  AsyncStorage
 } from "react-native";
 import { Button, Text } from "react-native-paper";
-
 import { MonoText } from "../components/StyledText";
 
 export default function HomeScreen(props) {
@@ -18,6 +18,11 @@ export default function HomeScreen(props) {
   useEffect(() => {
     if (counter > 6 || counter < -6) setCounter(0);
   }, [counter]);
+
+  const handleLogout = async () => {
+    await AsyncStorage.removeItem("@AuthStore:authToken");
+    props.navigation.navigate("Auth");
+  };
 
   return (
     <View style={styles.container}>
@@ -96,6 +101,15 @@ export default function HomeScreen(props) {
               }}
             >
               Go to Details
+            </Button>
+          </View>
+
+          <Text style={styles.helpContainer}>
+            Delete authToken and navigate to LogIn screen
+          </Text>
+          <View>
+            <Button mode="contained" onPress={handleLogout}>
+              Log out
             </Button>
           </View>
         </View>
